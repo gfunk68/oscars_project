@@ -39,6 +39,7 @@ def director():
     bestdirector_df[["Year","Oscar Year"]] = bestdirector_df.Years.str.split("(",expand=True)
     bestdirector_df["Oscar Year"] = bestdirector_df["Oscar Year"].str.replace(r"[\(\[].*?[\)\]]","")
     bestdirector_df["Oscar Year"] = bestdirector_df["Oscar Year"].str.replace(")","")
+    bestdirector_df["Year"] = bestdirector_df["Year"].str.replace(" ","")
     bestdirector_df = bestdirector_df[['Year','Oscar Year','Winner Name','Film', "Category",'Wiki URL']]
     
     for x in url:
@@ -58,6 +59,12 @@ def director():
             birthyear.append('Unknown')
     bestdirector_df['Birthplace']=birthplace
     bestdirector_df["Birth Year"]=birthyear
+    bestdirector_df["Age Awarded"]="Unknown"
+
+    for x in range(len(bestdirector_df)):
+        if bestdirector_df["Birth Year"].iloc[x]!="Unknown":
+            bestdirector_df["Age Awarded"].iloc[x] =  int(bestdirector_df["Year"].iloc[x][:2]+bestdirector_df["Year"].iloc[x][-2:]) - int(bestdirector_df["Birth Year"].iloc[x]) 
+
     bestdirector_df.to_csv("bestdirector.csv",index=False)
     
     return bestdirector_df
@@ -105,6 +112,12 @@ def supporting_actor():
     
     bestsupportingactor_df['Birthplace']=birthplace
     bestsupportingactor_df["Birth Year"]=birthyear
+    bestsupportingactor_df["Age Awarded"]="Unknown"
+
+    for x in range(len(bestsupportingactor_df)):
+        if bestsupportingactor_df["Birth Year"].iloc[x]!="Unknown":
+            bestsupportingactor_df["Age Awarded"].iloc[x] = int(bestsupportingactor_df["Year"].iloc[x]) - int(bestsupportingactor_df["Birth Year"].iloc[x]) 
+
     bestsupportingactor_df.to_csv("bestsupportingactor.csv",index=False)
 
     return bestsupportingactor_df
@@ -152,6 +165,12 @@ def supporting_actress():
 
     bestsupportingactress_df['Birthplace']=birthplace
     bestsupportingactress_df["Birth Year"]=birthyear
+    bestsupportingactress_df["Age Awarded"]="Unknown"
+
+    for x in range(len(bestsupportingactress_df)):
+        if bestsupportingactress_df["Birth Year"].iloc[x]!="Unknown":
+            bestsupportingactress_df["Age Awarded"].iloc[x] = int(bestsupportingactress_df["Year"].iloc[x]) - int(bestsupportingactress_df["Birth Year"].iloc[x]) 
+    
     bestsupportingactress_df.to_csv("bestsupportingactress.csv",index=False)
 
     return bestsupportingactress_df
@@ -204,7 +223,12 @@ def best_actor():
         
             films_list.append(back_ground_yellow[i].find("b").text)
 
-    bestactor_df = pd.DataFrame({"Years": years_list, "WinnersName": actors_list, "Film": films_list,"Category":"Best Actor"})
+    bestactor_df = pd.DataFrame({"Years": years_list, "Winner Name": actors_list, "Film": films_list,"Category":"Best Actor"})
+    bestactor_df[["Year","Oscar Year"]] = bestactor_df.Years.str.split("(",expand=True)
+    bestactor_df["Oscar Year"] = bestactor_df["Oscar Year"].str.replace(r"[\(\[].*?[\)\]]","")
+    bestactor_df["Oscar Year"] = bestactor_df["Oscar Year"].str.replace(")","")
+    bestactor_df["Year"] = bestactor_df["Year"].str.replace(" ","")
+    
     #actor_df.head(10)
 
     actor_url = []
@@ -230,9 +254,14 @@ def best_actor():
             print("Oops!",sys.exc_info()[0],"occured")
             birthyear.append('Unknown')
 
-
+    bestactor_df = bestactor_df[['Year','Oscar Year','Winner Name','Film', "Category",'Wiki URL']]
     bestactor_df["Birthplace"] = birthplace
     bestactor_df["Birth Year"] = birthyear
+    bestactor_df["Age Awarded"]="Unknown"
+
+    for x in range(len(bestactor_df)):
+        if bestactor_df["Birth Year"].iloc[x]!="Unknown":
+            bestactor_df["Age Awarded"].iloc[x] = int(bestactor_df["Year"].iloc[x][:2]+bestactor_df["Year"].iloc[x][-2:]) - int(bestactor_df["Birth Year"].iloc[x]) 
     
     bestactor_df.to_csv("best_actor.csv",index=False)
 
@@ -286,7 +315,12 @@ def best_actress():
         
             films_list.append(back_ground_yellow[i].find("b").text)
 
-    bestactress_df = pd.DataFrame({"Years": years_list, "WinnersName": actress_list, "Film": films_list,"Category":"Best Actress"})
+    bestactress_df = pd.DataFrame({"Years": years_list, "Winner Name": actress_list, "Film": films_list,"Category":"Best Actress"})
+    bestactress_df[["Year","Oscar Year"]] = bestactress_df.Years.str.split("(",expand=True)
+    bestactress_df["Oscar Year"] = bestactress_df["Oscar Year"].str.replace(r"[\(\[].*?[\)\]]","")
+    bestactress_df["Oscar Year"] = bestactress_df["Oscar Year"].str.replace(")","")
+    bestactress_df["Year"] = bestactress_df["Year"].str.replace(" ","")
+
     #actor_df.head(10)
 
     actress_url = []
@@ -312,9 +346,14 @@ def best_actress():
             print("Oops!",sys.exc_info()[0],"occured")
             birthyear.append('Unknown')
 
-
+    bestactress_df = bestactress_df[['Year','Oscar Year','Winner Name','Film', "Category",'Wiki URL']]
     bestactress_df["Birthplace"] = birthplace
     bestactress_df["Birth Year"] = birthyear
+    bestactress_df["Age Awarded"]="Unknown"
+
+    for x in range(len(bestactress_df)):
+        if bestactress_df["Birth Year"].iloc[x]!="Unknown":
+            bestactress_df["Age Awarded"].iloc[x] = int(bestactress_df["Year"].iloc[x][:2] + bestactress_df["Year"].iloc[x][-2:]) - int(bestactress_df["Birth Year"].iloc[x]) 
     
     bestactress_df.to_csv("best_actress.csv",index=False)
 
