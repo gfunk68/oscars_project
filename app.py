@@ -1,23 +1,13 @@
 import os
 import pandas as pd
 import sys
-sys.path.insert(1, './')
+import json
 sys.path.insert(1, './')
 from merger import allwinners
 from flask import Flask, render_template, redirect
 from flask_pymongo import PyMongo
 
 allwinners_df = allwinners()
-
-
-
-
-
-
-
-
-
-
 
 
 app = Flask(__name__)
