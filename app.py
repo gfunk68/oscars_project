@@ -16,7 +16,7 @@ from bson.json_util import dumps
 
 # storing the concatenated dataframe in "allwinners_df"
 
-#allwinners_df = allwinners()
+# allwinners_df = allwinners()
 
 
 # MongoDb connection and Database set up
@@ -27,15 +27,15 @@ mongo = PyMongo(app)
 
 # collection "winners" created in "oscars_db" after the insertion of first record
 winners= mongo.db.winners
-#winners.drop()   # drops the collection "winners" if it already exists
+# winners.drop()   # drops the collection "winners" if it already exists
 
 
 # converts the concatenated dataframe to json format to store in "MongoDb"
 
-#df_to_dict = json.loads(allwinners_df.T.to_json()).values()
+# df_to_dict = json.loads(allwinners_df.T.to_json()).values()
 
 #Inserting the json data to "winners" collection
-#winners.insert_many(df_to_dict)
+# winners.insert_many(df_to_dict)
 
 
 # flask set up
@@ -50,12 +50,12 @@ def home_route():
 
     return(
         f"Following routes has oscar Winners - Demographic information<br/><br/>"
-        f"/api/v1.0/all_winners_data<br/>"
-        f"/api/v1.0/best_actors<br/>"
-        f"/api/v1.0/best_actresses<br/>"
-        f"/api/v1.0/best_directors<br/>"
-        f"/api/v1.0/best_supporting_actors<br/>"
-        f"/api/v1.0/best_supporting_actresses<br/>"
+        f"<a href='/api/v1.0/all_winners_data'>/api/v1.0/all_winners_data</a><br/>"
+        f"<a href='/api/v1.0/best_directors'>/api/v1.0/best_directors</a><br/>"
+        f"<a href='/api/v1.0/best_actors'>/api/v1.0/best_actors</a><br/>"
+        f"<a href='/api/v1.0/best_actresses'>/api/v1.0/best_actresses</a><br/>"
+        f"<a href='/api/v1.0/best_supporting_actors'>/api/v1.0/best_supporting_actors</a><br/>"
+        f"<a href='/api/v1.0/best_supporting_actresses'>/api/v1.0/best_supporting_actresses</a><br/>"
     )
 
 
