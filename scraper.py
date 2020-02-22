@@ -16,7 +16,7 @@ def director():
     url=[]
     birthplace =[]
     birthyear=[]
-
+    imageURL=[]
     
     raw_df = pd.read_html("https://en.wikipedia.org/wiki/Academy_Award_for_Best_Director")[2]
     director_df = raw_df[raw_df["Year"]!=raw_df["Film"]]
@@ -57,9 +57,21 @@ def director():
         except:
             print("Oops!",sys.exc_info()[0],"occured")
             birthyear.append('Unknown')
+        try:
+            imageURL_result = soup.find_all('table', class_='biography')[0].find_all('a')[0].get('href')
+            imageURL_result = f'https://en.wikipedia.org{imageURL_result}'
+            imgURLresponse = requests.get(imageURL_result)
+            imgURLsoup = bs(imgURLresponse.text, 'html.parser')
+            image = imgURLsoup.find_all('div', class_='fullImageLink')[0].find_all('a')[0].get('href')
+            imageURL.append(f'https:{image}')
+        except:
+            print("Oops!",sys.exc_info()[0],"occured")
+            imageURL.append('Unknown')
+    bestdirector_df['Image URL']=imageURL
     bestdirector_df['Birthplace']=birthplace
     bestdirector_df["Birth Year"]=birthyear
     bestdirector_df["Age Awarded"]="Unknown"
+
 
     for x in range(len(bestdirector_df)):
         if bestdirector_df["Birth Year"].iloc[x]!="Unknown":
@@ -76,6 +88,7 @@ def supporting_actor():
     birthplace =[]
     birthyear=[]
     url=[]
+    imageURL=[]
 
     raw_df = pd.read_html("https://en.wikipedia.org/wiki/Academy_Award_for_Best_Supporting_Actor")[2]
     list_of_years = raw_df.Year.unique()
@@ -109,7 +122,18 @@ def supporting_actor():
         except:
             print("Oops!",sys.exc_info()[0],"occured")
             birthyear.append('Unknown')
+        try:
+            imageURL_result = soup.find_all('table', class_='biography')[0].find_all('a')[0].get('href')
+            imageURL_result = f'https://en.wikipedia.org{imageURL_result}'
+            imgURLresponse = requests.get(imageURL_result)
+            imgURLsoup = bs(imgURLresponse.text, 'html.parser')
+            image = imgURLsoup.find_all('div', class_='fullImageLink')[0].find_all('a')[0].get('href')
+            imageURL.append(f'https:{image}')
+        except:
+            print("Oops!",sys.exc_info()[0],"occured")
+            imageURL.append('Unknown')
     
+    bestsupportingactor_df['Image URL']=imageURL
     bestsupportingactor_df['Birthplace']=birthplace
     bestsupportingactor_df["Birth Year"]=birthyear
     bestsupportingactor_df["Age Awarded"]="Unknown"
@@ -129,6 +153,7 @@ def supporting_actress():
     birthplace =[]
     birthyear=[]
     url=[]
+    imageURL=[]
 
     raw_df = pd.read_html("https://en.wikipedia.org/wiki/Academy_Award_for_Best_Supporting_Actress")[2]
     list_of_years = raw_df.Year.unique()
@@ -162,7 +187,19 @@ def supporting_actress():
         except:
             print("Oops!",sys.exc_info()[0],"occured")
             birthyear.append('Unknown')
-
+        try:
+            imageURL_result = soup.find_all('table', class_='biography')[0].find_all('a')[0].get('href')
+            imageURL_result = f'https://en.wikipedia.org{imageURL_result}'
+            imgURLresponse = requests.get(imageURL_result)
+            imgURLsoup = bs(imgURLresponse.text, 'html.parser')
+            image = imgURLsoup.find_all('div', class_='fullImageLink')[0].find_all('a')[0].get('href')
+            imageURL.append(f'https:{image}')
+        except:
+            print("Oops!",sys.exc_info()[0],"occured")
+            imageURL.append('Unknown')
+    
+    
+    bestsupportingactress_df['Image URL']=imageURL
     bestsupportingactress_df['Birthplace']=birthplace
     bestsupportingactress_df["Birth Year"]=birthyear
     bestsupportingactress_df["Age Awarded"]="Unknown"
@@ -183,7 +220,8 @@ def best_actor():
     actor_url = []
     birthplace =[]
     birthyear=[]
-
+    imageURL=[]
+    
     url = "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Actor"
 
     res = requests.get(url)
@@ -253,8 +291,20 @@ def best_actor():
         except:
             print("Oops!",sys.exc_info()[0],"occured")
             birthyear.append('Unknown')
-
+        try:
+            imageURL_result = soup.find_all('table', class_='biography')[0].find_all('a')[0].get('href')
+            imageURL_result = f'https://en.wikipedia.org{imageURL_result}'
+            imgURLresponse = requests.get(imageURL_result)
+            imgURLsoup = bs(imgURLresponse.text, 'html.parser')
+            image = imgURLsoup.find_all('div', class_='fullImageLink')[0].find_all('a')[0].get('href')
+            imageURL.append(f'https:{image}')
+        except:
+            print("Oops!",sys.exc_info()[0],"occured")
+            imageURL.append('Unknown')
+    
+    
     bestactor_df = bestactor_df[['Year','Oscar Year','Winner Name','Film', "Category",'Wiki URL']]
+    bestactor_df['Image URL']=imageURL
     bestactor_df["Birthplace"] = birthplace
     bestactor_df["Birth Year"] = birthyear
     bestactor_df["Age Awarded"]="Unknown"
@@ -275,6 +325,7 @@ def best_actress():
     actress_url = []
     birthplace =[]
     birthyear=[]
+    imageURL=[]
 
     url = "https://en.wikipedia.org/wiki/Academy_Award_for_Best_Actress"
 
@@ -345,8 +396,20 @@ def best_actress():
         except:
             print("Oops!",sys.exc_info()[0],"occured")
             birthyear.append('Unknown')
+        try:
+            imageURL_result = soup.find_all('table', class_='biography')[0].find_all('a')[0].get('href')
+            imageURL_result = f'https://en.wikipedia.org{imageURL_result}'
+            imgURLresponse = requests.get(imageURL_result)
+            imgURLsoup = bs(imgURLresponse.text, 'html.parser')
+            image = imgURLsoup.find_all('div', class_='fullImageLink')[0].find_all('a')[0].get('href')
+            imageURL.append(f'https:{image}')
+        except:
+            print("Oops!",sys.exc_info()[0],"occured")
+            imageURL.append('Unknown')
+    
 
     bestactress_df = bestactress_df[['Year','Oscar Year','Winner Name','Film', "Category",'Wiki URL']]
+    bestactress_df['Image URL']=imageURL
     bestactress_df["Birthplace"] = birthplace
     bestactress_df["Birth Year"] = birthyear
     bestactress_df["Age Awarded"]="Unknown"

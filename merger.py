@@ -7,6 +7,7 @@ from pprint import pprint
 sys.path.insert(1, './')
 from scraper import director,supporting_actor,supporting_actress,best_actor,best_actress
 from geopy import geocoders
+from pymongo import MongoClient
 
 def allwinners(): 
     try:
@@ -76,5 +77,12 @@ def allwinners():
 
     allwinners_df['Birthplace Latitude'] = lat
     allwinners_df['Birthplace Longitude'] = lon
+
+    client=MongoClient('mongodb://localhost:27017/')
+    db = client.oscars_db
+    collection = db.winners
+    collection.drop()
+    df_to_dict = json.loads(allwinners_df.T.to_json()).values()
+    collection.insert_many(df_to_dict)
 
     return allwinners_df

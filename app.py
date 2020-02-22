@@ -16,6 +16,7 @@ from bson.json_util import dumps
 
 # storing the concatenated dataframe in "allwinners_df"
 
+# Run the following code to refresh the scraped data.
 # allwinners_df = allwinners()
 
 
@@ -26,7 +27,7 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/oscars_db"
 mongo = PyMongo(app)
 
 # collection "winners" created in "oscars_db" after the insertion of first record
-winners= mongo.db.winners
+# winners= mongo.db.winners
 # winners.drop()   # drops the collection "winners" if it already exists
 
 
@@ -38,10 +39,6 @@ winners= mongo.db.winners
 # winners.insert_many(df_to_dict)
 
 
-# flask set up
-
-app = Flask(__name__)
-
 #Flask Home route
 
 @app.route("/")
@@ -49,6 +46,7 @@ def home_route():
     """Listing all available routes."""
 
     return(
+        f'<form action="/refresh" method="get" target="_blank"> <button type="submit">Resfresh Data</button> </form>'
         f"Following routes has oscar Winners - Demographic information<br/><br/>"
         f"<a href='/api/v1.0/all_winners_data'>/api/v1.0/all_winners_data</a><br/>"
         f"<a href='/api/v1.0/best_directors'>/api/v1.0/best_directors</a><br/>"
@@ -114,6 +112,15 @@ def best_supporting_actress():
 
     supporting_actress = dumps(mongo.db.winners.find({"Category":"Best Supporting Actress"}))
     return supporting_actress
+
+@app.route("/refresh")
+def refresh():
+
+    # Run the following code to refresh the scraped data.
+    print("Web Scraping Activated. Fresh data will be delivered within 5 minutes.")
+    allwinners_df = allwinners()
+    print("Scraping Complete")
+    return refresh
 
 
 if __name__ == "__main__":
