@@ -1,0 +1,28 @@
+.navbar
+{
+    background-color: rgb(177, 137, 8); /* Golden shade*/
+
+}
+
+.navbar-brand
+{
+   
+    margin-bottom: 14px;
+}
+
+.nav-item
+{
+    margin-top: 10px;
+    margin-right: 5px;
+    
+}
+
+body{
+    background-color:black;
+}
+
+#about
+{
+    background-color: white;
+}
+
