@@ -77,7 +77,7 @@ def director():
         if bestdirector_df["Birth Year"].iloc[x]!="Unknown":
             bestdirector_df["Age Awarded"].iloc[x] =  int(bestdirector_df["Year"].iloc[x][:2]+bestdirector_df["Year"].iloc[x][-2:]) - int(bestdirector_df["Birth Year"].iloc[x]) 
 
-    bestdirector_df.to_csv("bestdirector.csv",index=False)
+    bestdirector_df.to_csv("ETL/clean_data/bestdirector.csv",index=False)
     
     return bestdirector_df
 
@@ -142,7 +142,7 @@ def supporting_actor():
         if bestsupportingactor_df["Birth Year"].iloc[x]!="Unknown":
             bestsupportingactor_df["Age Awarded"].iloc[x] = int(bestsupportingactor_df["Year"].iloc[x]) - int(bestsupportingactor_df["Birth Year"].iloc[x]) 
 
-    bestsupportingactor_df.to_csv("bestsupportingactor.csv",index=False)
+    bestsupportingactor_df.to_csv("ETL/clean_data/bestsupportingactor.csv",index=False)
 
     return bestsupportingactor_df
 
@@ -208,7 +208,7 @@ def supporting_actress():
         if bestsupportingactress_df["Birth Year"].iloc[x]!="Unknown":
             bestsupportingactress_df["Age Awarded"].iloc[x] = int(bestsupportingactress_df["Year"].iloc[x]) - int(bestsupportingactress_df["Birth Year"].iloc[x]) 
     
-    bestsupportingactress_df.to_csv("bestsupportingactress.csv",index=False)
+    bestsupportingactress_df.to_csv("ETL/clean_data/bestsupportingactress.csv",index=False)
 
     return bestsupportingactress_df
 
@@ -313,7 +313,7 @@ def best_actor():
         if bestactor_df["Birth Year"].iloc[x]!="Unknown":
             bestactor_df["Age Awarded"].iloc[x] = int(bestactor_df["Year"].iloc[x][:2]+bestactor_df["Year"].iloc[x][-2:]) - int(bestactor_df["Birth Year"].iloc[x]) 
     
-    bestactor_df.to_csv("best_actor.csv",index=False)
+    bestactor_df.to_csv("ETL/clean_data/best_actor.csv",index=False)
 
     return bestactor_df
 
@@ -418,7 +418,7 @@ def best_actress():
         if bestactress_df["Birth Year"].iloc[x]!="Unknown":
             bestactress_df["Age Awarded"].iloc[x] = int(bestactress_df["Year"].iloc[x][:2] + bestactress_df["Year"].iloc[x][-2:]) - int(bestactress_df["Birth Year"].iloc[x]) 
     
-    bestactress_df.to_csv("best_actress.csv",index=False)
+    bestactress_df.to_csv("ETL/clean_data/best_actress.csv",index=False)
 
     return bestactress_df
 

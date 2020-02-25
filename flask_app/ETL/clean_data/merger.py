@@ -14,31 +14,31 @@ def allwinners():
         director_df = director()
     except: 
         print("Oops!",sys.exc_info()[0],"occured, using bestdirector.csv instead")
-        director_df = pd.Dataframe.read_csv("bestdirector.csv")
+        director_df = pd.read_csv("ETL/clean_data/bestdirector.csv")
 
     try:
         bestactor_df = best_actor()
     except: 
         print("Oops!",sys.exc_info()[0],"occured, using bestactor.csv instead")
-        bestactor_df = pd.Dataframe.read_csv("bestactor.csv")
+        bestactor_df = pd.read_csv("ETL/clean_data/best_actor.csv")
 
     try:
         bestactress_df = best_actress()
     except: 
         print("Oops!",sys.exc_info()[0],"occured, using bestactress.csv instead")
-        bestactress_df = pd.Dataframe.read_csv("bestactress.csv")
+        bestactress_df = pd.read_csv("ETL/clean_data/best_actress.csv")
 
     try:
         bestsupportingactor_df = supporting_actor()
     except: 
         print("Oops!",sys.exc_info()[0],"occured, using bestsupportingactor.csv instead")
-        bestsupportingactor_df = pd.Dataframe.read_csv("bestsupportingactor.csv")
+        bestsupportingactor_df = pd.read_csv("ETL/clean_data/bestsupportingactor.csv")
 
     try:
         bestsupportingactress_df = supporting_actress()
     except: 
         print("Oops!",sys.exc_info()[0],"occured, using bestsupportingactress.csv instead")
-        bestsupportingactress_df = pd.Dataframe.read_csv("bestsupportingactress.csv")
+        bestsupportingactress_df = pd.read_csv("ETL/clean_data/bestsupportingactress.csv")
 
     allwinners_df = pd.concat([bestactress_df,bestactor_df,bestsupportingactor_df,bestsupportingactress_df,director_df], ignore_index=True)
 

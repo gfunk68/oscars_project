@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import sys
 import json
-sys.path.insert(1, './')
+sys.path.insert(1, './ETL/clean_data')
 from merger import allwinners
 
 # Dependencies for Flask module and MongoDb 
@@ -119,8 +119,8 @@ def refresh():
     # Run the following code to refresh the scraped data.
     print("Web Scraping Activated. Fresh data will be delivered within 5 minutes.")
     allwinners_df = allwinners()
-    print("Scraping Complete")
-    return refresh
+    scraping_complete = "Scraping Complete"
+    return scraping_complete
 
 
 if __name__ == "__main__":
