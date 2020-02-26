@@ -33,9 +33,9 @@
                 <li><a class="navbar-brand" href="https://github.com/gfunk68/oscars_project" target="_blank"><img src="images/github.png" alt="github_project_link" style="height:45px;width:45px;"></a></li>
               </ul> 
               <ul class="nav navbar-nav navbar-right">
-                <li><a class="navbar-brand" href="https://twitter.com/TheAcademy?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank"><img src="images/bird.png" alt="Twitter" style="height:45px;width:45px;"></a></li>
-                <li><a class="navbar-brand" href="https://www.facebook.com/TheAcademy/" target="_blank"><img src="images/fb.png" alt="Facebook" style="height:45px;width:45px;"></a></li>
-                <li><a class="navbar-brand" href="https://www.instagram.com/theacademy/?hl=en" target="_blank"><img src="images/insta.jfif" alt="Instagram" style="height:45px;width:45px;"></a></li>
+                <li><a class="navbar-brand" href="https://twitter.com/TheAcademy?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank"><img src="images/bird.png" class="rounded" alt="Twitter" style="height:45px;width:45px;"></a></li>
+                <li><a class="navbar-brand" href="https://www.facebook.com/TheAcademy/" target="_blank"><img src="images/fb.png" alt="Facebook" class="rounded" style="height:45px;width:45px;"></a></li>
+                <li><a class="navbar-brand" href="https://www.instagram.com/theacademy/?hl=en" target="_blank"><img src="images/insta.png" class="rounded" alt="Instagram" style="height:45px;width:45px;"></a></li>
               </ul>
             </div>
         </nav>
@@ -51,12 +51,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <p class="about_para">
-                        <h1>About the Project:</h1> <br>
-                        This year, the 92nd Academy Awards saw the first non-English-language film win Best Picture. In recent years, many have criticized the Academy Awards for its lack of diversity in crowning women and people of color for some of its most coveted prizes, particularly Best Director and Best Actors and Actresses awards.<br>
-                        A viral call-to-action hashtag, #OscarsSoWhite turned into a social movement to spread awareness about lack of diversity at the Oscars. 
-                        Thus, we were inspired to create some visualizations to learn more about previous Oscar winners.
-                    </p>
+                    <div class = "about_box">
+                        <p class="about_para">
+                            <h1>About the Project:</h1> <br>
+                            This year, the 92nd Academy Awards saw the first non-English-language film win Best Picture. In recent years, many have criticized the Academy Awards for its lack of diversity in crowning women and people of color for some of its most coveted prizes, particularly Best Director and Best Actors and Actresses awards.<br>
+                            A viral call-to-action hashtag, #OscarsSoWhite turned into a social movement to spread awareness about lack of diversity at the Oscars. 
+                            Thus, we were inspired to create some visualizations to learn more about previous Oscar winners.
+                        </p>          
+                    </div>
                 </div>
              </div>
         </div>
@@ -69,12 +71,20 @@
                <div class="row">
                    <div class="col-sm-3">
                        <h1>Adding 2 drop downs</h1>
+                       <p><select id="category" onchange="optionChanged(this.value)"></select></p>
+                       <p><select id="names"></select></p>
                        <p> adding two drop downs - 5 categroies</p>
                        <p>loading names based on chosen category</p>
                    </div>
                    <div class="col-sm-9">
-                       <h1>Display</h1>
-                       <p>displaying photo and demographic information of the selcted person</p>
+                       <!-- <h1>Display</h1>
+                       <p>displaying photo and demographic information of the selcted person</p> -->
+                       <div class="panel panel-primary">
+                           <div class="panel-heading">
+                               <h3 class="panel-title">Winner Details</h3>
+                           </div>
+                           <div id="personal_information" class="panel-body"></div>
+                       </div>
                    </div>
                </div>
            </div>
@@ -160,6 +170,23 @@
         </div>
       </footer>
   <!-- Footer -->
+
+  <!--Java script libraries and files-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  <!--d3.js-->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+  <script type="text/javascript" src="static/js/app.js"></script>
+
+  <!--D3 (placed at bottom to help load more quickly)-->
+  
+  <script src="https://d3js.org/d3-array.v1.min.js"></script>
+  <script src="https://d3js.org/d3-geo.v1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-require@1"></script>
 
      
     </body>
