@@ -48,6 +48,8 @@ body{
 {
     background-color: white; /* Map section*/
 }
+#map
+{height: 500px;}
 
 #age
 {
