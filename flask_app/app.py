@@ -23,21 +23,9 @@ from bson.json_util import dumps
 # MongoDb connection and Database set up
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb://localhost:27017/oscars_db"
+# app.config["MONGO_URI"] = "mongodb://localhost:27017/oscars_db"
+app.config["MONGO_URI"] = "mongodb://heroku_04cn4618:9mobqjv5lj52vcsdqpjpeoqqj0@ds131512.mlab.com:31512/heroku_04cn4618?retryWrites=false"
 mongo = PyMongo(app)
-
-# collection "winners" created in "oscars_db" after the insertion of first record
-# winners= mongo.db.winners
-# winners.drop()   # drops the collection "winners" if it already exists
-
-
-# converts the concatenated dataframe to json format to store in "MongoDb"
-
-# df_to_dict = json.loads(allwinners_df.T.to_json()).values()
-
-#Inserting the json data to "winners" collection
-# winners.insert_many(df_to_dict)
-
 
 #Flask Home route
 
@@ -119,6 +107,17 @@ def refresh():
     # Run the following code to refresh the scraped data.
     print("Web Scraping Activated. Fresh data will be delivered within 5 minutes.")
     allwinners_df = allwinners()
+    # collection "winners" created in "oscars_db" after the insertion of first record
+    winners= mongo.db.winners
+    winners.drop()   # drops the collection "winners" if it already exists
+
+
+    # converts the concatenated dataframe to json format to store in "MongoDb"
+
+    df_to_dict = json.loads(allwinners_df.T.to_json()).values()
+
+    #Inserting the json data to "winners" collection
+    winners.insert_many(df_to_dict)
     scraping_complete = "Scraping Complete"
     return scraping_complete
 

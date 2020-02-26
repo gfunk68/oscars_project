@@ -91,6 +91,7 @@ def supporting_actor():
     imageURL=[]
 
     raw_df = pd.read_html("https://en.wikipedia.org/wiki/Academy_Award_for_Best_Supporting_Actor")[2]
+    raw_df = raw_df[raw_df["Year"]!=raw_df["Film"]]
     list_of_years = raw_df.Year.unique()
 
 
@@ -156,6 +157,7 @@ def supporting_actress():
     imageURL=[]
 
     raw_df = pd.read_html("https://en.wikipedia.org/wiki/Academy_Award_for_Best_Supporting_Actress")[2]
+    raw_df = raw_df[raw_df["Year"]!=raw_df["Film"]]
     list_of_years = raw_df.Year.unique()
 
 
