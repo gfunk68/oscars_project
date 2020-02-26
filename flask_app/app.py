@@ -8,7 +8,7 @@ from merger import allwinners
 # Dependencies for Flask module and MongoDb 
 from flask import Flask, render_template, redirect
 from flask_pymongo import PyMongo
-
+from flask_cors import CORS
 
 #Converts python.cursor.Cursor object to serializable/JSON object
 
@@ -23,6 +23,7 @@ from bson.json_util import dumps
 # MongoDb connection and Database set up
 
 app = Flask(__name__)
+CORS(app)
 # app.config["MONGO_URI"] = "mongodb://localhost:27017/oscars_db"
 app.config["MONGO_URI"] = "mongodb://heroku_04cn4618:9mobqjv5lj52vcsdqpjpeoqqj0@ds131512.mlab.com:31512/heroku_04cn4618?retryWrites=false"
 mongo = PyMongo(app)
