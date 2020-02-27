@@ -50,13 +50,13 @@ var url = "https://oscars-dataset.herokuapp.com/api/v1.0/all_winners_data"
     // console.log(name)
     
         var trace = {
-        x: years,
-        y: age,
+        x: [years],
+        y: [age],
         mode: "markers",
-        // name: category,
-        // text: name,
+        name: category,
+        text: name,
         marker: {
-          // color: colors,
+          color: colors,
           size: 12,
           line: {
             width: 0.5
@@ -70,12 +70,12 @@ var url = "https://oscars-dataset.herokuapp.com/api/v1.0/all_winners_data"
         title: "Ages Awarded Over Time",
         xaxis: {
           title: "Years",
-        //   showgrid: false,
-        //   zeroline: false
+          showgrid: false,
+          zeroline: false
         },
         yaxis: {
           title: "Age Awarded",
-        //   showline: false
+          showline: false
         }
       };
       var graphOptions = {layout: layout, filename: "line-style", fileopt: "overwrite"};
