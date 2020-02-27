@@ -111,3 +111,41 @@ body{
 {
     background-color:#b5a642;
 } */
+
+.side_headings
+{
+    
+    background-color: #b5a642;
+    padding:10px;
+    color: white;
+    border-radius: 4px;
+    /* margin: 10px; */
+
+}
+
+#category
+{
+   
+     padding: 10px;
+     margin-left: 15px;
+     margin-right: 40px;
+    
+}
+
+#years
+{
+    padding: 10px;
+    margin-left: 60px;
+    margin-right: 50px;
+}
+
+/* .dropdown-content a:hover {background-color: green;} */
+
+#category:hover, #years:hover
+{
+    color: #b5a642 ;
+    overflow: hidden;
+    /* background-color: #b5a642; */
+ 
+
+}
