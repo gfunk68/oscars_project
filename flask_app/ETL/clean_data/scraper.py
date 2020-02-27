@@ -136,8 +136,13 @@ def supporting_actor():
             image = imgURLsoup.find_all('div', class_='fullImageLink')[0].find_all('a')[0].get('href')
             imageURL.append(f'https:{image}')
         except:
-            print("Oops!",sys.exc_info()[0],"occured")
-            imageURL.append('Unknown')
+            try:
+                photo_table = soup.find(class_="infobox biography vcard")
+                src = photo_table.find("img").get("src")
+                imageURL.append(src)
+            except:
+                print("Oops!",sys.exc_info()[0],"occured")
+                imageURL.append('Unknown')
     
     bestsupportingactor_df['Image URL']=imageURL
     bestsupportingactor_df['Birthplace']=birthplace
@@ -202,8 +207,13 @@ def supporting_actress():
             image = imgURLsoup.find_all('div', class_='fullImageLink')[0].find_all('a')[0].get('href')
             imageURL.append(f'https:{image}')
         except:
-            print("Oops!",sys.exc_info()[0],"occured")
-            imageURL.append('Unknown')
+            try:
+                photo_table = soup.find(class_="infobox biography vcard")
+                src = photo_table.find("img").get("src")
+                imageURL.append(src)
+            except:
+                print("Oops!",sys.exc_info()[0],"occured")
+                imageURL.append('Unknown')
     
     
     bestsupportingactress_df['Image URL']=imageURL
@@ -306,8 +316,13 @@ def best_actor():
             image = imgURLsoup.find_all('div', class_='fullImageLink')[0].find_all('a')[0].get('href')
             imageURL.append(f'https:{image}')
         except:
-            print("Oops!",sys.exc_info()[0],"occured")
-            imageURL.append('Unknown')
+            try:
+                photo_table = soup.find(class_="infobox biography vcard")
+                src = photo_table.find("img").get("src")
+                imageURL.append(src)
+            except:
+                print("Oops!",sys.exc_info()[0],"occured")
+                imageURL.append('Unknown')
     
     
     bestactor_df = bestactor_df[['Year','Oscar Year','Winner Name','Film', "Category",'Wiki URL']]
@@ -411,8 +426,13 @@ def best_actress():
             image = imgURLsoup.find_all('div', class_='fullImageLink')[0].find_all('a')[0].get('href')
             imageURL.append(f'https:{image}')
         except:
-            print("Oops!",sys.exc_info()[0],"occured")
-            imageURL.append('Unknown')
+            try:
+                photo_table = soup.find(class_="infobox biography vcard")
+                src = photo_table.find("img").get("src")
+                imageURL.append(src)
+            except:
+                print("Oops!",sys.exc_info()[0],"occured")
+                imageURL.append('Unknown')
     
 
     bestactress_df = bestactress_df[['Year','Oscar Year','Winner Name','Film', "Category",'Wiki URL']]
