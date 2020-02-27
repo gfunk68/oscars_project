@@ -65,8 +65,13 @@ def director():
             image = imgURLsoup.find_all('div', class_='fullImageLink')[0].find_all('a')[0].get('href')
             imageURL.append(f'https:{image}')
         except:
-            print("Oops!",sys.exc_info()[0],"occured")
-            imageURL.append('Unknown')
+            try:
+                photo_table = soup.find(class_="infobox biography vcard")
+                src = photo_table.find("img").get("src")
+                imageURL.append(src)
+            except:
+                print("Oops!",sys.exc_info()[0],"occured")
+                imageURL.append('Unknown')
     bestdirector_df['Image URL']=imageURL
     bestdirector_df['Birthplace']=birthplace
     bestdirector_df["Birth Year"]=birthyear

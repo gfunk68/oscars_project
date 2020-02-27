@@ -1,237 +1,276 @@
 
-var select_category = d3.selectAll("#category")
-var select_names = d3.selectAll("#names")
+var select_category = d3.selectAll("#category").on('change',optionChanged)
+var select_years = d3.selectAll("#years").on('change',optionChanged_years)
+
+
+var url = "https://oscars-dataset.herokuapp.com/api/v1.0/all_winners_data"
+var actress_url = "https://oscars-dataset.herokuapp.com/api/v1.0/best_actresses"
 
 var form_tag = d3.select("#personal_information").append("form").attr("class","form-group").append("ul").attr("class","list-group")
 
-//form_tag.append("b").text("AGE :")
 
-
-
-
-var category_array = ["Actor","Actress","Director","SupportingActor","SupportingActress"]
-var actor_names = [1,2,3,4,5]
-var actress_names = [4,4,4,4,5,5,5,5]
-
-category_array.forEach(function(d){
-    //console.log(d)
-    select_category.append("option").attr("value",d).text(d)
-})
 
 function optionChanged()
 {
+   
     //var selected_category = d3.selectAll("category").node()
     var select_category = d3.select("#category").property("value")
-    console.log(select_category)
-    //var category_value = select_category.text;
-    //console.log(category_value)
+    //console.log(select_category)
+   
+     var selected_year = d3.select("#years").property("value")
+     //console.log(selected_year)
 
-    //optionChanged_names(select_category)
-
-    if (select_category == category_array[0])
-    {
-        optionChanged_names(select_category)
-        //console.log(select_category)
-        //console.log(category_array[0])
-        //actor_names.forEach(function(d){
-          //  console.log(d)
-            //select_names.append("option").attr("value",d).text(d)
-        //})
-    }
+    
+    select_years.selectAll("option").remove()
+   
+     d3.json(url,function(url_data){
+        var arr = []
+        url_data.map(i =>{
+             
+             if(select_category === i.Category)
+             {
+                 arr.push(i.Year)
+                 var id = arr[0]
+                
+               if (i.Year == id)
+               {
+                  if(!(select_years.text()).includes(i.Year)) 
+                   {
+                    var keys = Object.keys(i)
+                    var values = Object.values(i)
+                   demographic_info(keys,values)
+                   var add_years= select_years.append("option").attr("value",i.Year).text(i.Year)    
+                   }
+               }
+               else
+               {
+                   if(!(select_years.text()).includes(i.Year))  // adding remaining years -  all unique years 
+                   {
+                      var add_years= select_years.append("option").attr("value",i.Year).text(i.Year)
+                   }
+               }
+               
+             }
+         })
+         
+      })
 
 }
 
-function optionChanged_names(select_category)
-{
-    console.log(select_category)
-    actor_names.forEach(function(d){
-        console.log(d)
-        select_names.append("option").attr("value",d).text(d)
+
+function optionChanged_years()
+ {
+
+       var selected_year = d3.select("#years").property("value")
+
+       var current_selected_category = d3.select("#category").property("value")
+
+       d3.json(url,function(url_data){
+        var tie_years = []
+        var tie_winners = []
+
+          url_data.map(i =>{
+            
+              if(selected_year === i.Year && current_selected_category === i.Category)
+              {
+                var keys = Object.keys(i)
+                var values = Object.values(i)
+
+                //----------temp---------------
+               
+                tie_winners.push(i)
+                tie_years.push(selected_year)
+
+                if(tie_years.length === 2)
+                {
+                    if(tie_years[0]===tie_years[1])  // display tie up winners onr after one
+                    {
+                        console.log(tie_years)
+                        
+                         var keys1 = Object.keys(tie_winners[0])
+                         var values1 = Object.values(tie_winners[0])
+                        
+                         //form_tag.selectAll("img").remove()
+                         //form_tag.selectAll("h4").remove()
+
+                         demographic_info(keys1,values1)
+
+                         var keys2 = Object.keys(tie_winners[1])
+                         var values2 = Object.values(tie_winners[1])
+
+                         //var breaks = form_tag.append("br") 
+                         form_tag.append("br")
+                         form_tag.append("br")
+                         //form_tag.append("hr")
+                         
+
+                         var second = form_tag.append("ul").attr("class","list-group").append("p")  // adding 
+                         //demographic_info(keys2,values2)
+                        
+                        for (var k=1;k<keys2.length;k++)
+                         { 
+                            if (k===7) // image url , display image at bottom right 
+                             {
+                                  //console.log(values[k]) 
+                             if(values[k]!=="Unknown")  
+                                {
+         
+                                   second.append("img").attr("src",values2[k]).attr("alt","Winners Image").classed('float-down',true).style("float","right")
+                                  
+
+                                }
+                             else{   // "No image url case"
+                                   second.append("img").attr("src","images/no_image.jpg").attr("alt","Winners Image").classed('float-down',true).style("float","right")
+                                }
+     
+                             }
+                            if (k!==7 && k!==11 && k!==12)
+                             {
+                             if (k!==6)
+                             {
+          
+                                var property = second.append("h4").text(keys2[k]+" "+":"+" ").append("b").text(values2[k]).append("br")
+          
+                             }
+                            else  // wiki url
+                             {
+                                var property = second.append("h4").text(keys2[k]+" "+":"+" ").append("a").attr("href",values2[k]).attr("target","_blank").text(values[k])
+                             }   
+                            }  
+                        }  //  for loop ending
+                    }
+                        }
+           
+                else
+                {
+
+                //----------code for tie up above---------------
+
+                demographic_info(keys,values)
+
+                } 
+              }
+          })
+           
+       })
+   
+ }
+
+ function page_load()
+ {
+    d3.json(actress_url,function(url_data){
+
+        var selected_id = url_data[0].Year
+        url_data.map(i => {
+            //console.log(i.Year)
+    
+            if (selected_id === i.Year)
+            {
+                var keys = Object.keys(i)
+                var values = Object.values(i)
+                demographic_info(keys,values)
+    
+                if(!(select_years.text()).includes(i.Year))  // adding first year  - total 92 years
+                {
+                   var add_years= select_years.append("option").attr("value",i.Year).text(i.Year).attr("selected","selected")
+                }
+            }
+            else
+            {
+                if(!(select_years.text()).includes(i.Year))  // adding remaining 91 years -  all unique years 
+                {
+                   var add_years= select_years.append("option").attr("value",i.Year).text(i.Year)
+                }
+            }
+        })
     })
     
-}
+    d3.json(url,function(url_data){
+      
+        var selected_id = url_data[0].Category
+    
+        url_data.map(data =>
+        {
+           if (selected_id === data.Category)
+           {
+            if (!(select_category.text()).includes(data.Category))  // checking for unique values
+            {
+                // adding first data category - total 5 
+                var add_category = select_category.append("option").attr("value",data.Category).text(data.Category).attr("selected","selected")
+            }
+           }
+           else
+           {
+            if (!(select_category.text()).includes(data.Category))   // checking for unique values
+            {
+                // adding remaining 4 data categories - all unique
+                var add_category = select_category.append("option").attr("value",data.Category).text(data.Category)
+            }
+           }     
+        })
+    })
 
-actress_names.forEach(function(d){
-    //console.log(d)
-    //select_names.append("option").attr("value",d).text(d)
-})
+ }
 
+ var t = []
 
+function demographic_info(keys,values)
+{
 
-//var names = students.map(student => student.name);
-// actor_names.forEach(function(d){
-//     select_names.append("option").attr("value",d).text(d)
-// })
+    form_tag.selectAll("img").remove()
+    form_tag.selectAll("h4").remove()
+    form_tag.selectAll("br").remove()
+    form_tag.selectAll("p").remove()
 
-//hairData.csv
+    var tie_keys = []
+    var tie_values = []
 
-//url = "http://127.0.0.1:5000/api/v1.0/best_directors"
-url = "https://oscars-dataset.herokuapp.com/api/v1.0/all_winners_data"
-
-//console.log(url)
-
-// retrieving url data in json using d3
-
-//  d3.json(url,function(data){
-//     // console.log(data.Year)
-//  })
-
-//  d3.request("http://127.0.0.1:5000/api/v1.0/all_winners_data")
-// .header("Content-Type", "application/json")
-// .post(function(data) {
-//    console.log(data);
-// })
-
-
-var data = {"_id": {"$oid": "5e5491fe11ec5fc67afdaecc"}, "Year": "1927/28", "Oscar Year": "1st", "Winner Name": "Frank Borzage ", "Film": "7th Heaven", "Category": "Best Director", "Wiki URL": "https://en.wikipedia.org/wiki/Frank Borzage ", "Image URL": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Frank_Borzage_001.JPG", "Birthplace": "Salt Lake City, Utah, U.S.", "Birth Year": "1894", "Age Awarded": 34, "Birthplace Latitude": 40.77, "Birthplace Longitude": -111.89}
-
-console.log(data)
-console.log(typeof data)
-
-
-console.log("---------keys - values--------------");
-
-var keys = Object.keys(data)
-var values = Object.values(data)
-console.log(values)
-
-for (var k=1;k<keys.length;k++)
-{ 
-    //console.log(k)
+    tie_keys.push(keys)
+    tie_values.push(values)
+    
+    var tie_years = []
+    
+    for (var k=1;k<keys.length;k++)
+   { 
+ 
     //var age_tag = h5_1.append("label").attr("for","age").append("h5").text("")
-    if (k===7)
+    if (k===7) // image url , display image at top right 
     {
-        //console.log(k)
-        //<img src="https://www.w3schools.com/images/w3schools_green.jpg" alt="W3Schools.com">
-        //<img src="paris.jpg" class="float-right" alt="Paris" width="304" height="236"> 
-        //form_tag.append("img").attr("src",values[k]).attr("alt","Winners Image").attr("class","float-right")
-         //form_tag.append("img").attr("src",values[k]).attr("alt","Winners Image").classed('float-right',true).style("position","absolute").style("top",0).style("right","0%")
+        //console.log(values[k]) 
+        if(values[k]!=="Unknown")  // "No image url case"
+        {
+         
          form_tag.append("img").attr("src",values[k]).attr("alt","Winners Image").classed('float-right',true).style("float","right")
         //form_tag.append("img").attr("src",values[k]).attr("alt","Winners Image").classed('float-right',true)
-    }
 
+        }
+        else{
+            form_tag.append("img").attr("src","images/no_image.jpg").attr("alt","Winners Image").classed('float-right',true).style("float","right")
+        }
+     
+    }
     if (k!==7 && k!==11 && k!==12)
     {
         if (k!==6)
         {
-            //console.log(k)
+          
             var property = form_tag.append("h4").text(keys[k]+" "+":"+" ").append("b").text(values[k]).append("br")
-           //form_tag.append("label").attr("for",values[k]).text(values[k]).append("br")
            //var value_tag = property.append("label").attr("for",values[k]).text(values[k])
            //value_tag.append("br")
-
         }
-        else
+        else  // wiki url
         {
             var property = form_tag.append("h4").text(keys[k]+" "+":"+" ").append("a").attr("href",values[k]).attr("target","_blank").text(values[k])
 
-        }
-       
-
-    }
-
-   
-}
-
-// form_tag.append("b").text(keys[1]+":").append("br")
-// form_tag.append("b").text(keys[2]+":").append("br")
-// form_tag.append("b").text(keys[3]+":").append("br")
-// form_tag.append("b").text(keys[4]+":").append("br")
-// form_tag.append("b").text(keys[5]+":")
-// form_tag.append("b").text(keys[6]+":")
-// form_tag.append("b").text(keys[8]+":")
-// form_tag.append("b").text(keys[9]+":")
-// form_tag.append("b").text(keys[10]+":")
-
-//console.log(keys)
-//console.log(typeof keys)
-//console.log(Object.values(data))
-
-console.log("----------entries-------------");
-
-//console.log(entries1[0]) 
-console.log(Object.entries(data))
-
-console.log("-----------------------");
-
-//  d3.json("http://127.0.0.1:5000/api/v1.0/all_winners_data").then( data => {
-//     console.log(data);
-// })
-
-// // import csv data from "Best-actor.csv"
+        }   
+    }  
+  }  //  for loop ending
+  
+} // function ending 
 
 
-var categories = []
-
- d3.csv("static/js/bestdirector.csv",function(data){
-     console.log("---------------------")
-     data.forEach(function(data){
-         //console.log(data.Year)
-         categories.push(data.Category)
-     })
-     console.log(categories)
-     console.log("---------------------")
- })
-
- d3.csv("static/js/best_actor.csv",function(data){
-    console.log("---------------------")
-    data.forEach(function(data){
-        //console.log(data.Year)
-        categories.push(data.Category)
-    })
-    console.log(categories)
-    console.log("---------------------")
-})
-d3.csv("static/js/best_actress.csv",function(data){
-    console.log("---------------------")
-    data.forEach(function(data){
-        //console.log(data.Year)
-        categories.push(data.Category)
-    })
-    console.log(categories)
-    console.log("---------------------")
-})
-
-d3.csv("static/js/bestsupportingactor.csv",function(data){
-    console.log("---------------------")
-    data.forEach(function(data){
-        //console.log(data.Year)
-        categories.push(data.Category)
-    })
-    console.log(categories)
-    console.log("---------------------")
-})
-
-d3.csv("static/js/bestdirector.csv",function(data){
-    console.log("---------------------")
-    data.forEach(function(data){
-        //console.log(data.Year)
-        categories.push(data.Category)
-    })
-    console.log(categories)
-    console.log("---------------------")
-})
-
-//  d3.csv("hairData.csv").then(function(d){
-//      console.log(d)
-//      console.log("---------------------")
-//      d.forEach(function(data){
-//          console.log(data)
-//      })
-//      console.log("---------------------")
-//  })
+page_load()
 
 
-// d3.csv("hairData.csv").then(function(hairData) {
 
-//     console.log(hairData[0])
-//     // Step 1: Parse Data/Cast as numbers
-//     // ==============================
-//     hairData.forEach(function(data) {
-//       console.log(data[0])
-//       data.hair_length = +data.hair_length;
-//       data.num_hits = +data.num_hits;
-//     });
-
-// });
 
