@@ -42,16 +42,21 @@ d3.json(url, function(d){
         width: 0.2
       }
     },
-    type: "scatter"
+    type: "scatter",
+    hovertemplate:
+          "<b>%{text}</b><br>" +
+          "%{yaxis.title.text}: %{y}<br>" +
+          "%{xaxis.title.text}: %{x}<br>" +
+          "<extra></extra>"
   };
   
     var data = [trace];
     var layout = {
       title: "Ages Awarded Oscar Over Time",
-      titlefont: {size: 30},
+      titlefont: {size: 26},
       hovermode: "closest",
       xaxis: {
-        title: "Years",
+        title: "Year",
         titlefont: {size: 20},
         tickfont:{size: 16},
         automargin: true,
@@ -66,5 +71,8 @@ d3.json(url, function(d){
         showline: false
       }
     };
-    Plotly.newPlot("age_years_chart", data, layout);
+    var config = {
+      responsive: true
+    };
+    Plotly.newPlot("age_years_chart", data, layout, config);
   });
