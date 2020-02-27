@@ -6,12 +6,26 @@ var url = "https://oscars-dataset.herokuapp.com/api/v1.0/all_winners_data"
 // d3.json(url).then(function(d){
 //     console.log(d)
 // })
-d3.json(url,function(d){
+
+
+  d3.json(url,function(d){
+    // Create a new marker cluster group
+    
+  
+    var markers = L.markerClusterGroup();
+    
+   
     var myMap = L.map("map", {
         center: [15.5994, -28.6731],
-        zoom: 3
-      });
+        zoom: 3,
+        layers: [markers, circle]
+      })
       
+
+     
+    
+      
+
       // Adding tile layer
       L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
         maxZoom: 18,
@@ -22,15 +36,20 @@ d3.json(url,function(d){
       // Loop through the countries array and create one circle for each country. 
     //   winnerlist = []
     //   d.filter(function(winner){return winner['Birthplace Latitude']=='Unknown'}
+      winnerz=[]
       
       d.forEach(function(winner) {
+
+        //Checks if Winner Name is unique so we don't show multiple dots for same person.
+        if (winnerz.indexOf(winner['Winner Name']) !== -1)
+        {return;}
+        
+        winnerz.push(winner['Winner Name']);
 
         if (winner['Birthplace Latitude'] ==='Unknown')
         { return; }
 
-    //   console.log([`${parseFloat(winner['Birthplace Latitude'])},${winner['Birthplace Longitude']}`])
-        
-      console.log(`[${winner['Birthplace Latitude']},${winner['Birthplace Longitude']}]`)
+
       var color = "";
       
         if (winner['Category'] == 'Best Actor' || winner['Category'] == 'Best Supporting Actor'){
@@ -42,19 +61,29 @@ d3.json(url,function(d){
         else {
           color = "pink";
         }
-        
-
-            
-        // add circles to map
-        L.circle([winner['Birthplace Latitude'],winner['Birthplace Longitude']], {
-          fillOpacity: 1,
-          weight: 0,
-          color: "white",
-          fillColor: color,
-          // Adjust radius
-          radius: 7000
-        }).bindPopup(`<img src='${winner['Image URL']}' width="75" height="100" margin-right=auto margin-left=auto display=block> <h4>${winner["Winner Name"]}</h4> <hr> <h6>Year: ${winner.Year}</h6><h6>Category: ${winner.Category}</h6><h6>Film: ${winner.Film}</h6><h6>Birthplace: ${winner['Birthplace']}</h6>`)
-          .addTo(myMap);
+    
+              // add circles to map
+          L.circle([winner['Birthplace Latitude'],winner['Birthplace Longitude']], {
+            fillOpacity: 1,
+            weight: 0,
+            color: "white",
+            fillColor: color,
+            // Adjust radius
+            radius: 70000
+          }).bindPopup(`<img src='${winner['Image URL']}' width="75" height="100" margin-right=auto margin-left=auto display=block> <h4>${winner["Winner Name"]}</h4> <hr> <h6>Year: ${winner.Year}</h6><h6>Category: ${winner.Category}</h6><h6>Film: ${winner.Film}</h6><h6>Birthplace: ${winner['Birthplace']}</h6>`)
+            .addTo(myMap);
       
+
+    
+      
+      
+          //Add a new marker to the cluster group and bind a pop-up
+          markers.addLayer(
+            L.marker([winner['Birthplace Latitude'],winner['Birthplace Longitude']]).bindPopup(`<img src='${winner['Image URL']}' width="75" height="100" margin-right=auto margin-left=auto display=block> <h4>${winner["Winner Name"]}</h4> <hr> <h6>Year: ${winner.Year}</h6><h6>Category: ${winner.Category}</h6><h6>Film: ${winner.Film}</h6><h6>Birthplace: ${winner['Birthplace']}</h6>`)
+          );
+          // Add our marker cluster layer to the map
+          myMap.addLayer(markers);
+          
+          L.control.layers()
       })
 })
