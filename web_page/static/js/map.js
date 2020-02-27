@@ -8,6 +8,7 @@ var url = "https://oscars-dataset.herokuapp.com/api/v1.0/all_winners_data"
 // })
 
 
+
   d3.json(url,function(d){
     // Create a new marker cluster group
     
@@ -20,9 +21,8 @@ var url = "https://oscars-dataset.herokuapp.com/api/v1.0/all_winners_data"
         zoom: 3,
         layers: [markers, circle]
       })
-      
+   
 
-     
     
       
 
