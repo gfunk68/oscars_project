@@ -1,3 +1,4 @@
+// variables for tags and urls
 
 var select_category = d3.selectAll("#category").on('change',optionChanged)
 var select_years = d3.selectAll("#years").on('change',optionChanged_years)
@@ -8,12 +9,11 @@ var actress_url = "https://oscars-dataset.herokuapp.com/api/v1.0/best_actresses"
 
 var form_tag = d3.select("#personal_information").append("form").attr("class","form-group").append("ul").attr("class","list-group")
 
-
+// html manipulation
 
 function optionChanged()
 {
    
-    //var selected_category = d3.selectAll("category").node()
     var select_category = d3.select("#category").property("value")
     //console.log(select_category)
    
@@ -76,7 +76,7 @@ function optionChanged_years()
                 var keys = Object.keys(i)
                 var values = Object.values(i)
 
-                //----------temp---------------
+                //----------code for displaying tie up winners---------------
                
                 tie_winners.push(i)
                 tie_years.push(selected_year)
@@ -120,7 +120,7 @@ function optionChanged_years()
 
                                 }
                              else{   // "No image url case"
-                                   second.append("img").attr("src","images/no_image.jpg").attr("alt","Winners Image").classed('float-down',true).style("float","right")
+                                   second.append("img").attr("src","images/unknown.png").attr("alt","Winners Image").classed('float-down',true).style("float","right")
                                 }
      
                              }
@@ -146,17 +146,15 @@ function optionChanged_years()
 
                 //----------code for tie up above---------------
 
-                demographic_info(keys,values)
+                demographic_info(keys,values)  // function called for non tie winners
 
                 } 
               }
-          })
-           
+          }) 
        })
-   
  }
 
- function page_load()
+ function page_load() // loading all 5 categories ,best actress years and first best actress information when the page is opened or refreshed 
  {
     d3.json(actress_url,function(url_data){
 
@@ -212,7 +210,6 @@ function optionChanged_years()
 
  }
 
- var t = []
 
 function demographic_info(keys,values)
 {
@@ -233,7 +230,6 @@ function demographic_info(keys,values)
     for (var k=1;k<keys.length;k++)
    { 
  
-    //var age_tag = h5_1.append("label").attr("for","age").append("h5").text("")
     if (k===7) // image url , display image at top right 
     {
         //console.log(values[k]) 
@@ -245,7 +241,7 @@ function demographic_info(keys,values)
 
         }
         else{
-            form_tag.append("img").attr("src","images/no_image.jpg").attr("alt","Winners Image").classed('float-right',true).style("float","right")
+            form_tag.append("img").attr("src","images/unknown.png").attr("alt","Winners Image").classed('float-right',true).style("float","right")
         }
      
     }
@@ -269,7 +265,7 @@ function demographic_info(keys,values)
 } // function ending 
 
 
-page_load()
+page_load()  // data to be loaded when page is opened or refreshed
 
 
 
