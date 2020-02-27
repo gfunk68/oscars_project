@@ -34,14 +34,14 @@ def home_route():
     """Listing all available routes."""
 
     return(
-        f'<form action="/refresh" method="get" target="_blank"> <button type="submit">Resfresh Data</button> </form>'
+        f'<form action="/refresh" method="get"> <button type="submit">Resfresh Data</button> </form>'
         f"Following routes has oscar Winners - Demographic information<br/><br/>"
-        f"<a href='/api/v1.0/all_winners_data'>/api/v1.0/all_winners_data</a><br/>"
-        f"<a href='/api/v1.0/best_directors'>/api/v1.0/best_directors</a><br/>"
-        f"<a href='/api/v1.0/best_actors'>/api/v1.0/best_actors</a><br/>"
-        f"<a href='/api/v1.0/best_actresses'>/api/v1.0/best_actresses</a><br/>"
-        f"<a href='/api/v1.0/best_supporting_actors'>/api/v1.0/best_supporting_actors</a><br/>"
-        f"<a href='/api/v1.0/best_supporting_actresses'>/api/v1.0/best_supporting_actresses</a><br/>"
+        f"<a href='/api/v1.0/all_winners_data' target='_blank'>/api/v1.0/all_winners_data</a><br/>"
+        f"<a href='/api/v1.0/best_directors' target='_blank'>/api/v1.0/best_directors</a><br/>"
+        f"<a href='/api/v1.0/best_actors' target='_blank'>/api/v1.0/best_actors</a><br/>"
+        f"<a href='/api/v1.0/best_actresses' target='_blank'>/api/v1.0/best_actresses</a><br/>"
+        f"<a href='/api/v1.0/best_supporting_actors' target='_blank'>/api/v1.0/best_supporting_actors</a><br/>"
+        f"<a href='/api/v1.0/best_supporting_actresses' target='_blank'>/api/v1.0/best_supporting_actresses</a><br/>"
     )
 
 
