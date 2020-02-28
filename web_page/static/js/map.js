@@ -3,6 +3,7 @@ const API_KEY = "pk.eyJ1IjoiZ2Z1bms2OCIsImEiOiJjazZiZ2Nkd28wZ21hM2twc294ZGh1c29y
 // Creating our initial map object
 var url = "https://oscars-dataset.herokuapp.com/api/v1.0/all_winners_data"
 
+
 // d3.json(url).then(function(d){
 //     console.log(d)
 // })
@@ -17,13 +18,10 @@ var url = "https://oscars-dataset.herokuapp.com/api/v1.0/all_winners_data"
     
    
     var myMap = L.map("map", {
-        center: [15.5994, -28.6731],
-        zoom: 3,
-        layers: [markers, circle]
+        center: [39.5994, -98.6731],
+        zoom: 3
       })
-   
-
-    
+       
       
 
       // Adding tile layer
@@ -34,8 +32,7 @@ var url = "https://oscars-dataset.herokuapp.com/api/v1.0/all_winners_data"
       }).addTo(myMap);
       
       // Loop through the countries array and create one circle for each country. 
-    //   winnerlist = []
-    //   d.filter(function(winner){return winner['Birthplace Latitude']=='Unknown'}
+
       winnerz=[]
       
       d.forEach(function(winner) {
@@ -84,6 +81,8 @@ var url = "https://oscars-dataset.herokuapp.com/api/v1.0/all_winners_data"
           // Add our marker cluster layer to the map
           myMap.addLayer(markers);
           
-          L.control.layers()
+      
       })
 })
+
+
