@@ -4,19 +4,27 @@
 
 }
 
-.navbar-brand   /* Navigation Bar Social Media Logos*/
+.navbar-brand  /* Navigation Bar Social Media Logos*/
 {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.nav-item .btn   /* Navigation Bar Heading*/
+.nav-item .btn    /* Navigation Bar Heading*/
 {
     margin-top: 5px;
     margin-bottom: 5px;
     margin-right: 10px;
     background-color: #b5a642;;
     color: white;
+}
+
+#click_me  /* button in about para to display and hide image*/
+{
+    background-color: #b5a642;;
+    color: white;
+    border: 10px #b5a642;
+    border-radius: 2px;
 }
 
 
@@ -170,3 +178,8 @@ body{
 {
     color: green;
 }
+
+ .workflow_image  /* image in about para to display at center */
+{
+    text-align: center;
+}  
