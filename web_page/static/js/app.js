@@ -1,7 +1,8 @@
-// variables for tags and urls
+// variables that refernce tags and for urls
 
 var select_category = d3.selectAll("#category").on('change',optionChanged)
 var select_years = d3.selectAll("#years").on('change',optionChanged_years)
+var button = d3.select("#click_me")
 
 
 var url = "https://oscars-dataset.herokuapp.com/api/v1.0/all_winners_data"
@@ -9,7 +10,33 @@ var actress_url = "https://oscars-dataset.herokuapp.com/api/v1.0/best_actresses"
 
 var form_tag = d3.select("#personal_information").append("form").attr("class","form-group").append("ul").attr("class","list-group")
 
+var image_present = 1
+var image_tag = d3.select(".workflow_image")
+
+//console.log(button.text())
+ 
+
 // html manipulation
+
+// displaying and hiding "project workflow image" on button click
+
+button.on("click",function(){
+    
+    if(image_present == 1)
+    {
+        //d3.select(".workflow_image").append("img").attr("src","images/oscars-project.png").attr("alt","workflow_image")
+        image_tag.append("img").attr("src","images/oscars-project.png").attr("alt","workflow_image").style("height","800px").style("width","1000px")
+        image_present = 0
+    }
+    else
+    {
+        image_tag.select("img").remove()
+        image_present = 1
+    }
+})
+
+
+
 
 function optionChanged()
 {

@@ -17,6 +17,7 @@ d3.json(url, function(d){
       category.push(winner['Category']);
       name.push(winner['Winner Name']);
 
+      // Color by Category: Blue for all Actors, Pink for all Actresses, Green for Directors
       if (winner['Category'] == 'Best Actor' || winner['Category'] == 'Best Supporting Actor'){
         colors.push('blue');
       }
@@ -28,9 +29,12 @@ d3.json(url, function(d){
       }
     });
     
+    // Clean up Years data
+    var years_clean = years.map(x => x.slice(0,4));
+
 // Set graph characteristics and chart with Plotly
     var trace = {
-    x: years,
+    x: years_clean,
     y: age,
     mode: "markers",
     name: category,
@@ -56,12 +60,13 @@ d3.json(url, function(d){
       titlefont: {size: 26},
       hovermode: "closest",
       xaxis: {
-        title: "Year",
+        title: "Film Year",
         titlefont: {size: 20},
         tickfont:{size: 16},
         automargin: true,
         showgrid: false,
-        zeroline: false
+        zeroline: false,
+        dtick: 10,
       },
       yaxis: {
         title: "Age Awarded",

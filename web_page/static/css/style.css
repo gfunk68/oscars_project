@@ -4,19 +4,27 @@
 
 }
 
-.navbar-brand   /* Navigation Bar Social Media Logos*/
+.navbar-brand  /* Navigation Bar Social Media Logos*/
 {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.nav-item .btn   /* Navigation Bar Heading*/
+.nav-item .btn    /* Navigation Bar Heading*/
 {
     margin-top: 5px;
     margin-bottom: 5px;
     margin-right: 10px;
     background-color: #b5a642;;
     color: white;
+}
+
+#click_me  /* button in about para to display and hide image*/
+{
+    background-color: #b5a642;;
+    color: white;
+    border: 10px #b5a642;
+    border-radius: 2px;
 }
 
 
@@ -52,11 +60,13 @@ body{
 #age
 {
     background-color: white; /* Age section*/
+    font-size: 16px;
 }
 
 #gender
 {
     background-color: white; /*gender section*/
+    font-size: 16px;
 }
 
 .page-footer /* page bottom*/
@@ -112,7 +122,7 @@ body{
     background-color:#b5a642;
 } */
 
-.side_headings
+.side_headings  /*left side panel headings*/
 {
     
     background-color: #b5a642;
@@ -123,7 +133,7 @@ body{
 
 }
 
-#category
+#category  /*drop downs*/
 {
    
      padding: 10px;
@@ -132,7 +142,7 @@ body{
     
 }
 
-#years
+#years /*drop downs*/
 {
     padding: 10px;
     margin-left: 60px;
@@ -141,7 +151,7 @@ body{
 
 /* .dropdown-content a:hover {background-color: green;} */
 
-#category:hover, #years:hover
+#category:hover, #years:hover  /*dropdown-content colors} */
 {
     color: #b5a642 ;
     overflow: hidden;
@@ -149,8 +159,27 @@ body{
  
 
 }
-.lis
+.lis  /*age - gender chart text*/
 {
     text-align: justify;
     margin: 4px;
 }
+
+.textCategoryActresses /* set color to Pink for all Actresses in text */
+{
+    color: pink;
+}
+
+.textCategoryActors /* set color to Blue for all Actors in text */
+{
+    color: blue;
+}
+.textCategoryDirectors /* set color to Green for all Directors in text */
+{
+    color: green;
+}
+
+ .workflow_image  /* image in about para to display at center */
+{
+    text-align: center;
+}  
