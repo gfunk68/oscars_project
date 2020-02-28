@@ -112,7 +112,7 @@ body{
     background-color:#b5a642;
 } */
 
-.side_headings
+.side_headings  /*left side panel headings*/
 {
     
     background-color: #b5a642;
@@ -123,7 +123,7 @@ body{
 
 }
 
-#category
+#category  /*drop downs*/
 {
    
      padding: 10px;
@@ -132,7 +132,7 @@ body{
     
 }
 
-#years
+#years /*drop downs*/
 {
     padding: 10px;
     margin-left: 60px;
@@ -141,7 +141,7 @@ body{
 
 /* .dropdown-content a:hover {background-color: green;} */
 
-#category:hover, #years:hover
+#category:hover, #years:hover  /*dropdown-content colors} */
 {
     color: #b5a642 ;
     overflow: hidden;
@@ -149,7 +149,7 @@ body{
  
 
 }
-.lis
+.lis  /*age - gender chart text*/
 {
     text-align: justify;
     margin: 4px;
