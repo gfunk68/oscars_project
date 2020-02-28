@@ -52,11 +52,13 @@ body{
 #age
 {
     background-color: white; /* Age section*/
+    font-size: 16px;
 }
 
 #gender
 {
     background-color: white; /*gender section*/
+    font-size: 16px;
 }
 
 .page-footer /* page bottom*/
@@ -153,4 +155,18 @@ body{
 {
     text-align: justify;
     margin: 4px;
+}
+
+.textCategoryActresses /* set color to Pink for all Actresses in text */
+{
+    color: pink;
+}
+
+.textCategoryActors /* set color to Blue for all Actors in text */
+{
+    color: blue;
+}
+.textCategoryDirectors /* set color to Green for all Directors in text */
+{
+    color: green;
 }
