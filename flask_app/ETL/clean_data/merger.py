@@ -58,15 +58,15 @@ def allwinners():
     for x in allwinners_df['Birthplace']:
         if x != 'Unknown':
             try:
-                params['q']=x
-                response = requests.get(base_url,params = params).json()
-                lon.append(response['coord']['lon'])
-                lat.append(response['coord']['lat'])
+                y = gn.geocode(x)
+                lat.append(y.latitude)
+                lon.append(y.longitude)
             except:
                 try:
-                    y = gn.geocode(x)
-                    lat.append(y.latitude)
-                    lon.append(y.longitude)
+                    params['q']=x
+                    response = requests.get(base_url,params = params).json()
+                    lon.append(response['coord']['lon'])
+                    lat.append(response['coord']['lat'])
                 except:
                     lat.append('Unknown')
                     lon.append('Unknown')
@@ -78,11 +78,13 @@ def allwinners():
     allwinners_df['Birthplace Latitude'] = lat
     allwinners_df['Birthplace Longitude'] = lon
 
-    client=MongoClient('mongodb://localhost:27017/')
-    db = client.oscars_db
-    collection = db.winners
-    collection.drop()
-    df_to_dict = json.loads(allwinners_df.T.to_json()).values()
-    collection.insert_many(df_to_dict)
+    # client=MongoClient('mongodb://localhost:27017/')
+    # db = client.oscars_db
+    # client=MongoClient('mongodb://heroku_04cn4618:9mobqjv5lj52vcsdqpjpeoqqj0@ds131512.mlab.com:31512/')
+    # db = client.heroku_04cn4618
+    # collection = db.winners
+    # collection.drop()
+    # df_to_dict = json.loads(allwinners_df.T.to_json()).values()
+    # collection.insert_many(df_to_dict)
 
     return allwinners_df

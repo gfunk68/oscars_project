@@ -33,8 +33,10 @@ var url = "https://oscars-dataset.herokuapp.com/api/v1.0/all_winners_data"
       
       var sliderControl = L.control.sliderControl({
         position: "topleft",
-        follow: true
-     }).addLayer(myMap);
+        follow: true,
+        layers: null 
+     }).addTo(myMap);
+     
       // Loop through the countries array and create one circle for each country. 
 
       winnerz=[]
@@ -64,15 +66,15 @@ var url = "https://oscars-dataset.herokuapp.com/api/v1.0/all_winners_data"
         }
     
               // add circles to map
-          L.circle([winner['Birthplace Latitude'],winner['Birthplace Longitude']], {
-            fillOpacity: 1,
-            weight: 0,
-            color: "white",
-            fillColor: color,
-            // Adjust radius
-            radius: 70000
-          }).bindPopup(`<img src='${winner['Image URL']}' width="75" height="100" margin-right=auto margin-left=auto display=block> <h4>${winner["Winner Name"]}</h4> <hr> <h6>Year: ${winner.Year}</h6><h6>Category: ${winner.Category}</h6><h6>Film: ${winner.Film}</h6><h6>Birthplace: ${winner['Birthplace']}</h6>`)
-            .addTo(myMap);
+          // L.circle([winner['Birthplace Latitude'],winner['Birthplace Longitude']], {
+          //   fillOpacity: 1,
+          //   weight: 0,
+          //   color: "white",
+          //   fillColor: color,
+          //   // Adjust radius
+          //   radius: 70000
+          // }).bindPopup(`<img src='${winner['Image URL']}' width="75" height="100" margin-right=auto margin-left=auto display=block> <h4>${winner["Winner Name"]}</h4> <hr> <h6>Year: ${winner.Year}</h6><h6>Category: ${winner.Category}</h6><h6>Film: ${winner.Film}</h6><h6>Birthplace: ${winner['Birthplace']}</h6>`)
+          //   .addTo(myMap);
       
 
     
