@@ -65,7 +65,7 @@ var url = "https://oscars-dataset.herokuapp.com/api/v1.0/all_winners_data"
           color = "pink";
         }
     
-              // add circles to map
+          // add circles to map
           // L.circle([winner['Birthplace Latitude'],winner['Birthplace Longitude']], {
           //   fillOpacity: 1,
           //   weight: 0,
