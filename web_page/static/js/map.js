@@ -31,6 +31,10 @@ var url = "https://oscars-dataset.herokuapp.com/api/v1.0/all_winners_data"
         accessToken: API_KEY
       }).addTo(myMap);
       
+      var sliderControl = L.control.sliderControl({
+        position: "topleft",
+        follow: true
+     }).addLayer(myMap);
       // Loop through the countries array and create one circle for each country. 
 
       winnerz=[]
