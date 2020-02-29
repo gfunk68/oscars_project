@@ -78,16 +78,10 @@
                     <div class = "about_box">
                         <p class="about_para">
                             <h1>About the Project:</h1> <br>
-                            This year, the 92nd Academy Awards saw the first non-English-language film win Best Picture. In recent years, many have criticized the Academy Awards for its lack of diversity in crowning women and people of color for some of its most coveted prizes, particularly Best Director and Best Actors and Actresses awards.<br>
+                            This year, the 92nd Academy Awards saw the first non-English-language film win Best Picture. In recent years, many have criticized the Academy Awards for its lack of diversity in crowning women and people of color for some of its most coveted prizes, particularly Best Director and Best Actors and Actresses awards.<br><br>
                             A viral call-to-action hashtag, #OscarsSoWhite turned into a social movement to spread awareness about lack of diversity at the Oscars. 
                             Thus, we were inspired to create some visualizations to learn more about the demographics of previous Oscar winners.
                             <button id="click_me">Please click to view Project WorkFlow</button>
-                            <h1>Collaborators:</h1> <br>
-                            <h3>MV <a href="https://github.com/MahathiV" target="_blank"><img src="images/github.png" alt="github_project_link" style="height:45px;width:45px;"></a>&emsp;&emsp;
-                            KW <a href="https://github.com/kasiewong" target="_blank"><img src="images/github.png" alt="github_project_link" style="height:45px;width:45px;"></a> &emsp;&emsp;
-                            DN <a href="https://github.com/gfunk68" target="_blank"><img src="images/github.png" alt="github_project_link" style="height:45px;width:45px;"></a>
-                            </h3><br>
-                            
                             <div class="workflow_image"></div>
                         </p>          
                     </div>
@@ -159,42 +153,73 @@
        <!--age chart-->
 
        <section id="age">
-           <div class="container">
-               <div class="row">
-                   <div class="col-sm-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <h3 class="side_headings">Age & Gender Observations:</h3>
-                            <p class="lis">
-                                <ul>
-                                    <li>The majority of Oscar <span class="textCategoryActresses"><b>actress</b></span> winners are younger. Most won their awards when they were <b>under 35 years old</b>.</li>
-                                     <br>
-                                    <li>Most Oscar <span class="textCategoryActors"><b>actor</b></span> winners won their awards between <b>age 35 to age 50</b>.</li>
-                                    <br> 
-                                    <li>The majority of Oscar-winning <span class="textCategoryDirectors"><b>directors</b></span> won their awards between the <b>ages of 40 to 60</b>.</li>
-                                    <br>
-                                    <li>The average age for winning an Oscar as an <span class="textCategoryActors"><b>actor</b></span> or <span class="textCategoryActresses"><b>actress</b></span> has not shifted greatly over time.</li>
-                                    <br> 
-                                    <li>Meanwhile, the average age of Oscar-winning <span class="textCategoryDirectors"><b>directors</b></span> is increasing over time.</li>
-                                    <br> 
-                                    <li>Kathryn Bigelow is the only woman to have ever won <span class="textCategoryDirectors"><b>Best Director</b></span> for 2009's <i>The Hurt Locker</i>.</li>
-                                    
-                                </ul>
-                            </p>
-                        </div>
-                    </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                 <div class="panel panel-default">
+                     <div class="panel-body">
+                         <h3 class="side_headings">Age & Gender Observations:</h3>
+                         <p class="lis">
+                             <ul>
+                                 <li>The majority of Oscar <span class="textCategoryActresses"><b>actress</b></span> winners are younger. Most won their awards when they were <b>under 35 years old</b>.</li>
+                                  <br>
+                                 <li>Most Oscar <span class="textCategoryActors"><b>actor</b></span> winners won their awards between <b>age 35 to age 50</b>.</li>
+                                 <br> 
+                                 <li>The majority of Oscar-winning <span class="textCategoryDirectors"><b>directors</b></span> won their awards between the <b>ages of 40 to 60</b>.</li>
+                                 <br>
+                                 <li>The average age for winning an Oscar as an <span class="textCategoryActors"><b>actor</b></span> or <span class="textCategoryActresses"><b>actress</b></span> has not shifted greatly over time.</li>
+                                 <br> 
+                                 <li>Meanwhile, the average age of Oscar-winning <span class="textCategoryDirectors"><b>directors</b></span> is increasing over time.</li>
+                                 <br> 
+                                 <li>Kathryn Bigelow is the only woman to have ever won <span class="textCategoryDirectors"><b>Best Director</b></span> for 2009's <i>The Hurt Locker</i>.</li>
+                                 
+                             </ul>
+                         </p>
+                     </div>
+                 </div>
+                </div>
+                <div class="col-sm-9">
+                   <div class="panel panel-default">
+                     <div class="panel-body">
+                         <div id="age_years_chart" style="height:750px;width:100%;"></div>
+                         <script src="static/js/age_years_chart.js"></script>
+                     </div>
                    </div>
-                   <div class="col-sm-9">
-                      <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div id="age_years_chart" style="height:750px;width:100%;"></div>
-                            <script src="static/js/age_years_chart.js"></script>
-                        </div>
-                      </div>
-                   </div>
-               </div>
-           </div>
-       </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--most oscars chart-->
+
+    <section id="most_oscars">
+     <div class="container">
+         <div class="row">
+             <div class="col-sm-3">
+              <div class="panel panel-default">
+                  <div class="panel-body">
+                      <h3 class="side_headings">Collaborators</h3>
+                      <p class="collaborators">
+                        <br>
+                        <b>MV</b>&ensp;&ensp;<a href="https://github.com/MahathiV" target="_blank"><img src="images/github.png" alt="github_project_link" style="height:45px;width:45px;"></a><br><br><br><br>
+                        <b>KW</b>&ensp;&ensp;<a href="https://github.com/kasiewong" target="_blank"><img src="images/github.png" alt="github_project_link" style="height:45px;width:45px;"></a><br><br><br><br>
+                        <b>DN</b>&ensp;&ensp;<a href="https://github.com/gfunk68" target="_blank"><img src="images/github.png" alt="github_project_link" style="height:45px;width:45px;"></a><br><br>
+                    </p>
+                  </div>
+              </div>
+             </div>
+             <div class="col-sm-9">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                      <div id="most_oscars_chart" style="height:100%;width:100%;"></div>
+                      <script src="static/js/most_oscars.js"></script>
+                  </div>
+                </div>
+             </div>
+         </div>
+     </div>
+ </section>
+
    <!-- Footer -->
       <footer class="page-footer font-small blue fixed-bottom">
         <div class="footer-copyright text-center">

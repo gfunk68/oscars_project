@@ -39,6 +39,7 @@ body{
   margin: 2px; */
   margin-bottom: 25px;
   margin-top: 25px;
+  font-size: 16px;
 } 
 
 #about
@@ -67,9 +68,9 @@ body{
 {
     height: 600px;
 }
-#gender
+#most_oscars
 {
-    background-color: white; /*gender section*/
+    background-color: white; /*most oscars section*/
     font-size: 16px;
 }
 
@@ -186,4 +187,10 @@ body{
  .workflow_image  /* image in about para to display at center */
 {
     text-align: center;
+}  
+
+.collaborators  /* set contents to center-align */
+{
+    text-align: center;
+    font-size: 20px;
 }  
