@@ -157,6 +157,24 @@ var trace1 = {
         "<extra></extra>"
 };
 
+var trace6 = {
+  x: [1927,2019],
+  y: [46,46],
+  mode: 'lines',
+  connectgaps: true,
+  name: "Median Director Age",
+  showlegend: true,
+  legendgroup: 'group',
+  text: "46",
+  line: {
+      color: 'green',
+      width: 2,
+      dash: 'dashdot',
+  },
+  hovertemplate:
+      "<b>46</b>"
+};
+
  
 // Best Actors graph characteristics
 var trace2 = {
@@ -176,6 +194,24 @@ var trace2 = {
           "%{yaxis.title.text}: %{y}<br>" +
           "%{xaxis.title.text}: %{x}<br>" +
           "<extra></extra>"
+};
+
+var trace7 = {
+  x: [1927,2019],
+  y: [44,44],
+  mode: 'lines',
+  connectgaps: true,
+  name: "Median Actor Age",
+  showlegend: true,
+  legendgroup: 'group1',
+  text: "44",
+  line: {
+      color: 'blue',
+      width: 2,
+      dash: 'dashdot',
+  },
+  hovertemplate:
+      "<b>44</b>"
 };
 
 
@@ -198,6 +234,23 @@ var trace3 = {
           "<extra></extra>"
 };
 
+var trace8 = {
+  x: [1927,2019],
+  y: [34,34],
+  mode: 'lines',
+  connectgaps: true,
+  name: "Median Actress Age",
+  showlegend: true,
+  legendgroup: 'group2',
+  text: "34",
+  line: {
+      color: 'pink',
+      width: 2,
+      dash: 'dashdot',
+  },
+  hovertemplate:
+      "<b>34</b>"
+};
 
 // Best Actress graph characteristics
 var trace4 = {
@@ -239,7 +292,7 @@ var trace5 = {
           "<extra></extra>"
 };
 
-var data = [trace2, trace4, trace1, trace3,trace5];
+var data = [trace2, trace4, trace1, trace3,trace5, trace7, trace8, trace6];
 
 var layout = {
     title: "Ages Awarded Oscar Over Time",
@@ -248,7 +301,7 @@ var layout = {
     // showlegend: true,
     legend: {"orientation": "h", 
             y: -0.2, 
-            x: 0.25},
+            x: 0.15},
     xaxis: {
         title: "Film Year",
         titlefont: {size: 20},
