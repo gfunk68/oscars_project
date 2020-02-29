@@ -18,8 +18,8 @@ var url = "https://oscars-dataset.herokuapp.com/api/v1.0/all_winners_data"
     
    
     var myMap = L.map("map", {
-        center: [39.5994, -98.6731],
-        zoom: 3
+        center: [0, 0],
+        zoom: 1.5
       })
        
       
@@ -31,12 +31,6 @@ var url = "https://oscars-dataset.herokuapp.com/api/v1.0/all_winners_data"
         accessToken: API_KEY
       }).addTo(myMap);
       
-      var sliderControl = L.control.sliderControl({
-        position: "topleft",
-        follow: true,
-        layers: null 
-     }).addTo(myMap);
-     
       // Loop through the countries array and create one circle for each country. 
 
       winnerz=[]
@@ -65,7 +59,7 @@ var url = "https://oscars-dataset.herokuapp.com/api/v1.0/all_winners_data"
           color = "pink";
         }
     
-          // add circles to map
+          //add circles to map
           // L.circle([winner['Birthplace Latitude'],winner['Birthplace Longitude']], {
           //   fillOpacity: 1,
           //   weight: 0,

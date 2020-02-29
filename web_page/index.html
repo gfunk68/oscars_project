@@ -36,7 +36,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
         
         <script type="text/javascript" src="static/js/map.js"></script>
-        <script type="text/javascript" src="static/js/slidercontrol.js"></script>
         
         
         <script src="https://d3js.org/d3-array.v1.min.js"></script>
@@ -55,7 +54,8 @@
                 <li class="nav-item active"><button type="button" class="btn"><h1><b>Academy Awards</b></h1></button></li>
 
                 <li><a class="navbar-brand" href="https://github.com/gfunk68/oscars_project" target="_blank"><img src="images/github.png" alt="github_project_link" style="height:45px;width:45px;"></a></li>
-              </ul> 
+                <li><a class="navbar-brand" href="https://oscars-dataset.herokuapp.com" target="_blank"><img src="images/heroku.svg" alt="github_project_link" style="height:45px;width:45px;"></a></li>  
+            </ul> 
               <ul class="nav navbar-nav navbar-right">
                 <li><a class="navbar-brand" href="https://twitter.com/TheAcademy?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank"><img src="images/bird.PNG" class="rounded" alt="Twitter" style="height:45px;width:45px;"></a></li>
                 <li><a class="navbar-brand" href="https://www.facebook.com/TheAcademy/" target="_blank"><img src="images/fb.png" alt="Facebook" class="rounded" style="height:45px;width:45px;"></a></li>
@@ -81,8 +81,13 @@
                             This year, the 92nd Academy Awards saw the first non-English-language film win Best Picture. In recent years, many have criticized the Academy Awards for its lack of diversity in crowning women and people of color for some of its most coveted prizes, particularly Best Director and Best Actors and Actresses awards.<br>
                             A viral call-to-action hashtag, #OscarsSoWhite turned into a social movement to spread awareness about lack of diversity at the Oscars. 
                             Thus, we were inspired to create some visualizations to learn more about the demographics of previous Oscar winners.
-                            <!-- <img class="w3-image" src="images/oscars-project.png" alt="Oscars" width="100%" height="100%"> -->
                             <button id="click_me">Please click to view Project WorkFlow</button>
+                            <h1>Collaborators:</h1> <br>
+                            <h3>MV <a href="https://github.com/MahathiV" target="_blank"><img src="images/github.png" alt="github_project_link" style="height:45px;width:45px;"></a>&emsp;&emsp;
+                            KW <a href="https://github.com/kasiewong" target="_blank"><img src="images/github.png" alt="github_project_link" style="height:45px;width:45px;"></a> &emsp;&emsp;
+                            DN <a href="https://github.com/gfunk68" target="_blank"><img src="images/github.png" alt="github_project_link" style="height:45px;width:45px;"></a>
+                            </h3><br>
+                            
                             <div class="workflow_image"></div>
                         </p>          
                     </div>
@@ -131,22 +136,19 @@
        <section id="leaflet_map">
            <div class="container">
                <div class="row">
-                   <div class="col-sm-3">
+                   <div class="col-sm-12">
                      <div class="panel panel-default">
                         <div class="panel-body">
-                            <h3 class="side_headings">Winner Distribution</h3>
+                            <h3 class="side_headings">Winner Location</h3>
                             <p> The vast majority of Oscars winners in these categories over the last 92 years have been from (as expected) New York City and Los Angeles. Surprisingly, none have come from South America or Africa. Quite a few have come from Europe, with the vast majority born in England.
                             </p>
+                            <div id="map" class="panel-body">
+                            </div>
                         </div>
                      </div>                     
                    </div>
-                   <div class="col-sm-9">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" style="background-color:#b5a642;">
-                            <h3 class="panel-title">Winner's Location</h3>
-                        </div>
-                        <div id="map" class="panel-body">
-                        </div>
+
+                        
                         <!-- <div class="h-100 d-inline-block"> -->           
                     </div>
                    </div>
@@ -225,6 +227,5 @@
   
     <!--js file-->
     <script type="text/javascript" src="static/js/app.js"></script>
-     
     </body>
 </html>
